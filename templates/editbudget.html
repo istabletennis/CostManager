@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Edit Budget</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="header">
+    <a class="logo">Cost Manager - Edit Budget</a>
+    <div class="header-right">
+        <a href="/">Back</a>
+    </div>
+</div>
+
+<div>
+    <form method="POST" action="/editbudget">
+            <input type="text" name="budget" id="budget" value="{{budget}}">
+            <input class="button" type="submit" value="Update">
+    </form>
+</div>
+
+{% endblock %}

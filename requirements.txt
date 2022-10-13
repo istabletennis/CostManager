@@ -1,0 +1,7 @@
+Jinja2
+flask_login
+werkzeug
+requests
+flask
+flask_sqlalchemy
+datetime

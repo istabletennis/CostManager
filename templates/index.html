@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Cost Manager</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="header">
+    <a class="logo">Cost Manager</a>
+    <div class="header-right">
+        <a>User: {{name}}</a>
+        <a>Your budget: {{budget}}</a>
+        <a href="/editbudget">Edit Budget</a>
+        <a href="/logout">Log Out</a>
+    </div>
+</div>
+
+<div>
+    <table id="products">
+        <tr>
+            <th>Product</th>
+            <th>Cost</th>
+            <th>Action</th>
+        </tr>
+    {% for element in list %}
+        <tr>
+            <td>{{element.product}}</td>
+            <td>{{element.price}} zł</td>
+            <td>
+                <span>
+                    <form action="/delete/{{element.id}}">
+                        <input class="button" type="submit" value="Delete">
+                    </form>
+                    <form action="/save" method="POST">
+                        <input type="hidden" name="product" id="SaveProduct" value="{{element.product}}">
+                        <input type="hidden" name="price" id="SavePrice" value="{{element.price}}">
+                        <input class="button" type="submit" value="Save">
+                    </form>
+                </span>
+            </td>
+        </tr>
+    {% endfor %}
+        <tr>
+            <td>Sum</td>
+            <td>{{sum}} zł</td>
+            <td>
+            </td>
+        </tr>
+        <tr>
+            <form action="/" method="POST">
+                <td><input type="text" name="product" id="Product"></td>
+                <td><input type="number" step="0.01" name="price" id="Price"></td>
+                <td><input class="button" type="submit" value="Add Product"></td>
+            </form>
+        </tr>
+    </table>
+</div>
+
+
+
+<div>
+    <table id="products">
+        <tr>
+            <th>Saved Product</th>
+            <th>Cost</th>
+            <th>Action</th>
+        </tr>
+    {% for element in saved %}
+        <tr>
+            <td>{{element.product}}</td>
+            <td>{{element.price}}</td>
+            <td>
+                <form action="/deletesaved/{{element.id}}">
+                    <input class="button" type="submit" value="Delete">
+                </form>
+                <form action="/" method="POST">
+                    <input type="hidden" name="product" id="AddProduct" value="{{element.product}}">
+                    <input type="hidden" step="0.01" name="price" id="AddPrice" value="{{element.price}}">
+                    <input class="button" type="submit" value="Add To List">
+                </form>
+            </td>
+        </tr>
+    {% endfor %}
+    </table>
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block body %}
+
+<div class="header">
+    <a class="logo">Cost Manager - Log In</a>
+    <div class="header-right">
+        <a href="/signup">Sign Up</a>
+    </div>
+</div>
+
+<div>
+    <form method="POST" action="/login">
+        <input type="email" name="email" placeholder="Your Email" autofocus="">
+        <input type="password" name="password" placeholder="Your Password">
+        <label>
+            <input type="checkbox" name="remember">
+            Remember me
+        </label>
+        <button class="button">Login</button>
+    </form>
+</div>
+
+{% endblock %}
